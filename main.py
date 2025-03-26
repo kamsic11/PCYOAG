@@ -6,6 +6,7 @@ import pygame
 
 # hello
 #hello back
+#hi
 
 pygame.init()                      #initialize pygame
 
