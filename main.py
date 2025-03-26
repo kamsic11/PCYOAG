@@ -4,6 +4,8 @@ import random
 import sys
 import pygame
 
+# hello
+
 pygame.init()                      #initialize pygame
 
 # ---------------------------------------------------------
@@ -304,7 +306,7 @@ def bad_ending2():
 
 
 def bad_ending3():
-    print(f"\n{player_name}, ignoring the ghost made it mad! Now you're trapped forever!" + "\U0001F628"
+    print(f"\n{player_name}, ignoring the ghost made it mad! Now you're trapped forever!" + "\U0001F628")
     game_over.play()
     sleep_pause(2)
     game_conclusion()
