@@ -84,7 +84,7 @@ GHOST_ART = r"""
 def introduction():
     global player_name
     clear_screen()
-    typewriter_effect =("\033[30;102mWelcome to 'The Ghost Who Loved Puns'!\033[0m",)
+    typewriter_effect =("\033[30;102mWelcome to 'The Ghost Who Loved Puns'!!!!!!\033[0m",)
     sleep_pause(1)
 
     print("Welcome, brave adventurer! You have just arrived at your new house, ")
