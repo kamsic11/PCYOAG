@@ -26,9 +26,6 @@ try:
     congrats = pygame.mixer.Sound(os.path.join(folder,'congrats.mp3'))  #load sound
 
 
-
-
-
 except:
     raise(UserWarning, "could not load or play soundfiles in 'media' folder :-(")
 
@@ -38,6 +35,13 @@ except:
 # ----------------------------------------------------
 pygame.mixer.music.play(-1)       # play music on loop
 # ----------------------------------------------------
+def typewriter_effect(text, delay=0.03):
+    for char in text:
+        print(char, end='', flush=True)
+        time.sleep(delay)
+    print()
+
+
 # Function to clear the screen
 def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -78,7 +82,7 @@ GHOST_ART = r"""
 def introduction():
     global player_name
     clear_screen()
-    print("\033[30;102mWelcome to 'The Ghost Who Loved Puns'!\033[0m")
+    typewriter_effect =("\033[30;102mWelcome to 'The Ghost Who Loved Puns'!\033[0m",)
     sleep_pause(1)
 
     print("Welcome, brave adventurer! You have just arrived at your new house, ")
@@ -87,14 +91,15 @@ def introduction():
           "and there's a faint hint of something spooky in the air.")
     sleep_pause(2)
 
-    print("\nAs the clock strikes midnight, you hear a strange noise—sort of sounds ")
+    typewriter_effect= ("\nAs the clock strikes midnight, you hear a strange noise—sort of sounds ")
     clock_noise.play()
 
-    print("\nlike a giggle... You turn the corner, heart pounding, as you are supposed "
+    typewriter_effect= ("\nlike a giggle... You turn the corner, heart pounding, as you are supposed "
           "to be home alone and not expecting any visitors, and there, floating in front "
-          "of you, is a ghost! You scream out of fear.")
-    scream.play()
+          "of you, is a ghost! You scream out of fear.",0.05)
+    scream.play(loops=0, maxtime=4000)
     sleep_pause(3)
+
 
     print("\nBut this isn't your average, soul-chilling specter. No, this ghost seems to have "
           "a weird obsession with…punny jokes! With a mischievous grin, it suddenly bursts out: "
@@ -102,12 +107,11 @@ def introduction():
     boo.play()
     sleep_pause(3)
 
-    print("\nYour task? Survive the night. Or perhaps, just maybe, find a way to make this "
-          "laugh-loving ghost your friend.")
+    typewriter_effect= ("\nYour task? Survive the night. Or perhaps, just maybe, find a way to make this "
+          "laugh-loving ghost your friend.", 0.05)
     print("Will you fall prey to the ghost's hilarious hauntings, or can you outwit the puns "
           "and escape? The choice is yours... just don't get caught in the pun-derworld!")
     sleep_pause(3)
-
     player_name = input("\nBefore we start, what is your name, brave adventurer? ")
     print(f"\nWelcome, {player_name}! Prepare for a night of spooky puns!")
     input("\nPress Enter to continue... ")
@@ -150,6 +154,7 @@ def punny_riddle():
     print("\033[32m[Good Choice]\033[0m: The ghost is pleased with your bravery!")
     sleep_pause(2)
     level3()
+
 
 
 # Level 1: The Creepy Hallway
@@ -213,6 +218,36 @@ def punny_riddle():
     else:
         print("Wrong! The ghost laughs at your failed answer.")
         bad_ending2()
+
+# BONUS LEVEL- ROCK,PAPER,SCISSORS
+def play_rock_paper_scissors():
+    options = ['rock', 'paper', 'scissors']
+    ghost_choice = random.choice(options)
+
+    typewriter_effect("\nThe ghost challenges you to Rock, Paper, Scissors!", 0.03)
+    player_choice = input("Choose rock, paper, or scissors: ").lower()
+
+    if player_choice not in options:
+        print("Invalid choice! The ghost wins by default!")
+        return False
+
+    print(f"The ghost chose {ghost_choice}!")
+    if player_choice == ghost_choice:
+        print("It's a tie! The ghost allows you another challenge.")
+        return play_rock_paper_scissors()
+    elif (player_choice == 'rock' and ghost_choice == 'scissors') or \
+            (player_choice == 'paper' and ghost_choice == 'rock') or \
+            (player_choice == 'scissors' and ghost_choice == 'paper'):
+        print("You won! The ghost is impressed!")
+        return True
+    else:
+        print("You lost! The ghost laughs at you.")
+        return False
+
+    sleep_pause()
+    print("The ghost challenges you to Rock, Paper, Scissors!")
+    if not play_rock_paper_scissors():
+        print("You lost the game. The ghost vanishes, leaving you trapped forever...")
 
 
 # Level 3: The Ghost's Punny Lair
