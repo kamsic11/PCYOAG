@@ -288,7 +288,7 @@ def good_ending1():
     print(f"\n{player_name}, you outwitted the ghost with puns!" + "\U0001F389")
     sleep_pause(2)
     print("The ghost laughs so hard, it lets you go! You survived the night!")
-    congtats.play()
+    congrats.play()
     game_conclusion()
     play_again()
 
